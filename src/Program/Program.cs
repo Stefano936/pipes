@@ -8,7 +8,7 @@ namespace CompAndDel
     {
         static void Main(string[] args)
         {
-            // Ejercicio 1.
+            // Ejercicio 1(Bear Color)
             IFilter flg = (IFilter) new FilterGreyscale();
             IFilter fln = (IFilter) new FilterNegative();
 
@@ -26,7 +26,7 @@ namespace CompAndDel
 
             provider.SavePicture(pi3, @"beer2.jpg");
 
-            // Ejercicio 2.
+            // Ejercicio 2(Save Photos)
             string baseFolder = "./trans/";
 
             provider.SavePicture(pi1, baseFolder + @"beer_after_filter_negative.jpg");
