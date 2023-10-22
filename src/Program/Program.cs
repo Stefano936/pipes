@@ -9,29 +9,29 @@ namespace CompAndDel
         static void Main(string[] args)
         {
             // Ejercicio 1.
-            IFilter fg = (IFilter) new FilterGreyscale();
-            IFilter fn = (IFilter) new FilterNegative();
+            IFilter flg = (IFilter) new FilterGreyscale();
+            IFilter fln = (IFilter) new FilterNegative();
 
             PictureProvider provider = new PictureProvider();
             IPicture picture = provider.GetPicture(@"beer.jpg");
 
-            PipeSerial ps = new PipeSerial(fg, new PipeSerial(fn, new PipeNull()));
-            IPicture p1 = ps.Send(picture);
+            PipeSerial pis = new PipeSerial(flg, new PipeSerial(fln, new PipeNull()));
+            IPicture pi1 = pis.Send(picture);
 
-            PipeSerial ps2 = (PipeSerial) ps.Next;
-            IPicture p2 = ps2.Send(p1);
+            PipeSerial pis2 = (PipeSerial) pis.Next;
+            IPicture pi2 = pis2.Send(pi1);
 
-            PipeNull pn = (PipeNull) ps2.Next;
-            IPicture p3 = pn.Send(p2);
+            PipeNull pn = (PipeNull) pis2.Next;
+            IPicture pi3 = pn.Send(pi2);
 
-            provider.SavePicture(p3, @"beer2.jpg");
+            provider.SavePicture(pi3, @"beer2.jpg");
 
             // Ejercicio 2.
             string baseFolder = "./trans/";
 
+            provider.SavePicture(pi1, baseFolder + @"beer_after_filter_negative.jpg");
             provider.SavePicture(picture, baseFolder + @"beer_base_picture.jpg");
-            provider.SavePicture(p1, baseFolder + @"beer_after_filter_negative.jpg");
-            provider.SavePicture(p2, baseFolder + @"beer_after_filter_greyscale.jpg");
+            provider.SavePicture(pi2, baseFolder + @"beer_after_filter_greyscale.jpg");
         }
     }
 }
