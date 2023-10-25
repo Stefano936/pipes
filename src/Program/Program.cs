@@ -8,7 +8,7 @@ namespace CompAndDel
     {
         static void Main(string[] args)
         {
-            // Ejercicio 1(Bear Color)
+            //(Bear Color) 1
             IFilter flg = (IFilter) new FilterGreyscale();
             IFilter fln = (IFilter) new FilterNegative();
 
@@ -26,12 +26,17 @@ namespace CompAndDel
 
             provider.SavePicture(pi3, @"beer2.jpg");
 
-            // Ejercicio 2(Save Photos)
+            //(Save Photos) 2
             string baseFolder = "./trans/";
 
             provider.SavePicture(pi1, baseFolder + @"beer_after_filter_negative.jpg");
             provider.SavePicture(picture, baseFolder + @"beer_base_picture.jpg");
             provider.SavePicture(pi2, baseFolder + @"beer_after_filter_greyscale.jpg");
+
+            //(Twitter) 3
+            FilterTwitter fit = new FilterTwitter(@"resParcial1.jpg");
+            PipeSerial ps = new PipeSerial(fit, serial2);
+            PipeSerial ps1 = new PipeSerial(resParcial1, ps);
         }
     }
 }
