@@ -34,7 +34,7 @@ namespace CompAndDel
             provider.SavePicture(pi2, baseFolder + @"beer_after_filter_greyscale.jpg");
 
             //(Twitter) 3
-            FilterTwitter fit = new FilterTwitter(@"resParcial1.jpg");
+            FilterTwitter fit = new FilterTwitter(@"resBeer.jpg");
             PipeSerial ps = new PipeSerial(fit, serial2);
             PipeSerial ps1 = new PipeSerial(resParcial1, ps);
         }
